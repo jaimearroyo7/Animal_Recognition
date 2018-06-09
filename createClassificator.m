@@ -8,14 +8,15 @@ function clasificador = createClassificator()
 
     dirAnterior = ' ';
 
-    animals = ["ant", "beaver", "crab", "crayfish", "crocodile", "dolphin", "dragonfly", "elephant", "emu", "flamingo", "kangaroo", "panda"];
+    %animals = ["ant", "beaver", "crab", "crayfish", "crocodile", "dolphin", "dragonfly", "elephant", "emu", "flamingo", "kangaroo", "panda"];
+    animals = [string('ant'), string('beaver'), string('crab'), string('crayfish'), string('crocodile'), string('dolphin'), string('dragonfly'), string('elephant'), string('emu'), string('flamingo'), string('kangaroo'), string('panda')];
 
     data = [];  
     index = 1;
     species = [];
     for i = 1 : length(animals)
         path = strcat('imatges_test\', animals(i),'\*.jpg');
-        dinfo = dir(path);
+        dinfo = dir(char(path));
         for j = 1 : length(dinfo)
             thisfolder = dinfo(j).folder;	% carpeta del fichero
             thisfilename = dinfo(j).name;	% nombre del fichero

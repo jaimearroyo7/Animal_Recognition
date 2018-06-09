@@ -3,7 +3,7 @@ function show_annotation(imgfile, annotation_file);
 %% imgfile: string
 %% annotation_file: string
 %%
-
+%
 
 IMTYPE = 'jpg'; 
 GUIDELINE_MODE = 1; 

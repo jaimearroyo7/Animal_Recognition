@@ -12,7 +12,6 @@ function clasificador = createClassificator()
     animals = [string('ant'), string('beaver'), string('crab'), string('crayfish'), string('crocodile'), string('dolphin'), string('dragonfly'), string('elephant'), string('emu'), string('flamingo'), string('kangaroo'), string('panda')];
 
     data = [];  
-    index = 1;
     species = [];
     for i = 1 : length(animals)
         path = strcat('imatges_animals_80_20\entreno\', animals(i),'\*.jpg');
@@ -24,11 +23,8 @@ function clasificador = createClassificator()
             species = [species,animals(i)];
             %filename
             annotationname = replace(replace(filename,'.jpg','.mat') ,'image','annotation');
-            stats = showNFourier(filename,annotationname,20);
-            rgb = histo(filename, annotationname);
-            stats = cat(1,stats,rgb');
+            stats = getProps(filename, annotationname);
             data = [data,stats];
-            index = index + 1;
         end
     end
 

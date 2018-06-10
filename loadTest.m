@@ -9,7 +9,6 @@ function [data, species] = loadTest()
     animals = ["ant", "beaver", "crab", "crayfish", "crocodile", "dolphin", "dragonfly", "elephant", "emu", "flamingo", "kangaroo", "panda"];
 
     data = [];  
-    index = 1;
     species = [];
     for i = 1 : length(animals)
         path = strcat('imatges_animals_80_20\test\', animals(i),'\*.jpg');
@@ -21,11 +20,8 @@ function [data, species] = loadTest()
             species = [species,animals(i)];
             %filename
             annotationname = replace(replace(filename,'.jpg','.mat') ,'image','annotation');
-            stats = showNFourier(filename,annotationname,20);
-            rgb = histo(filename, annotationname);
-            stats = cat(1,stats,rgb');
+            stats = getProps(filename, annotationname);
             data = [data,stats];
-            index = index + 1;
         end
     end
 

@@ -13,16 +13,6 @@ function stats = showNFourier(imgfile, annotation_file, N)
     %z = fft(s);
     tmp = fft(s);
 
-    %{
-    % Comprovació que funciona correctament
-    ss = ifft(z);
-    files = round(real(ss)+cdm(1));
-    columnes = round(imag(ss)+cdm(2));
-    aux = (zeros(size(contorn)));
-    aux(sub2ind(size(aux),files,columnes)) = 1;
-    figure(3), imshow(aux), title('inversa fft')
-    %}
-
     %tmp = z;
     tmp(N+1:end-N) = 0;
 
@@ -32,6 +22,6 @@ function stats = showNFourier(imgfile, annotation_file, N)
     aux = zeros(size(contorn).*2);
     aux(sub2ind(size(aux),files,columnes)) = 1;
     %figure(2), imshow(aux), title(sprintf('silueta reconstruida amb N = %d',N));
-    stats = regionprops(aux, 'MajorAxisLength','MinorAxisLength', 'Eccentricity', 'Orientation', 'ConvexArea', 'EulerNumber', 'EquivDiameter', 'Solidity', 'Extent', 'Perimeter');
+    stats = regionprops(aux, 'MajorAxisLength','MinorAxisLength', 'Eccentricity', 'Orientation', 'ConvexArea', 'EquivDiameter', 'Extent', 'Perimeter');
     stats = cell2mat(struct2cell(stats));
 end
